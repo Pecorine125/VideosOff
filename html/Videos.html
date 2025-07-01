@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vídeos</title>
+  <link rel="stylesheet" href="../css/Videos.css" />
+</head>
+<body>
+  <div class="video-container">
+    <select id="categoria" onchange="carregarCategoria()">
+      <option value="Animes Especial">Anime Especial</option>
+      <option value="Video Especial">Vídeo Especial</option>
+    </select>
+    <video id="video" width="600" height="300" controls></video>
+    <div class="controls">
+      <button onclick="playVideo()">Play</button>
+      <button onclick="pauseVideo()">Pause</button>
+      <button onclick="prevVideo()">Back</button>
+      <button onclick="nextVideo()">Next</button>
+      <button onclick="closeApp()">CloseApp</button>
+    </div>
+  </div>
+  <script src="../js/Videos.js"></script>
+</body>
+</html>

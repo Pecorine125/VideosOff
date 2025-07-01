@@ -1,0 +1,25 @@
+body {
+  background: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.video-container {
+  text-align: center;
+}
+
+.controls {
+  margin-top: 10px;
+}
+
+.controls button {
+  margin-right: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: lime;
+  cursor: pointer;
+}
