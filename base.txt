@@ -1,1 +1,2 @@
-
+quero uma pagina html que vai redirecionar para outra pagina que vai estar dentro de uma pasta assim:
+    Index.html --> 
