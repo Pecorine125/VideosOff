@@ -4,4 +4,5 @@ quero uma pagina html que vai redirecionar para outra pagina que vai estar dentr
     html/Login.html: vai ter uma função simples que vai verificar se o email bate com esse[harahelguilherme@gmail.com, programadorjunior25@gmail.com, harahellima@gmail.com] e a senha é [@Aquamarine2023*, @Rubyhoshino2023*, @AiYoshino2023*, @Pecopeco17*, @HAra25082003*] e depois vai para o Video.
     html/Videos.html: vai ter uma tela de 600 de largura e 300 altura eembaixo do video vai ter 5 botões: "Play" vai reproduzir o vdieo,"Back" que volta o video anterior, "CloseApp" que fehca a janela atual,  "Pause" que vai pausar o video e quando estiver pausado e tocar no "play" volta o video de onde parou e por ultimo "Next" que vai para o proximo video e não quero os botões tudo junto que um espaço de largura de 5px.
     e cada html tem seu css e js e porem vai ter duas categorias para o usuario escolher como Video Especial e Anime Especial e depois que escolher vai aceesar a pasta:
-    
+    1°/src/Animes Especial que os video vão estar com esse nomes: "Anime + Number.mp4" e entre o Nome e o Number vai ter um espaço e o Number começa do 1.
+    1°/src/Video Especial que os video vão estar com esse nomes: "Video Especial + Number.mp4" e entre o Nome e o Number vai ter um espaço e o Number começa do 1.
