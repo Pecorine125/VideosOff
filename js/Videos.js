@@ -10,7 +10,7 @@ function carregarCategoria() {
 
 function carregarVideo() {
   let pasta = categoria.value === "Animes Especial" ? "Animes Especial" : "Video Especial";
-  let nome = categoria.value === "Animes Especial" ? "Anime" : "Video Especial";
+  let nome = categoria.value === "Animes Especial" ? "Anime Especial" : "Video Especial";
   video.src = `../src/${pasta}/${nome} ${index}.mp4`;
   video.load();
 }
@@ -24,8 +24,10 @@ function pauseVideo() {
 }
 
 function nextVideo() {
-  index++;
-  carregarVideo();
+  if (index < maxVideos) {
+    index++;
+    carregarVideo();
+  }
 }
 
 function prevVideo() {
