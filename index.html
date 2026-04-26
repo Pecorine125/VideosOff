@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Especial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="menu-screen" class="container">
+        <h1>Selecione uma Categoria</h1>
+        <div class="menu-buttons">
+            <button onclick="openPlayer('video')">Video Especial</button>
+            <button onclick="openPlayer('anime')">Anime Especial</button>
+        </div>
+    </div>
+
+    <div id="player-screen" class="container hidden">
+        <h2 id="video-title">Reproduzindo</h2>
+        
+        <div class="video-container">
+            <video id="main-video" width="100%">
+                Seu navegador não suporta vídeos.
+            </video>
+        </div>
+
+        <div class="controls">
+            <button onclick="changeVideo(-1)">Back</button>
+            <button onclick="pauseVideo()">Pause</button>
+            <button onclick="playVideo()">Play</button>
+            <button onclick="changeVideo(1)">Next</button>
+            <button onclick="backToMenu()" class="btn-menu">Back Menu</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
