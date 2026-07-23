@@ -1,50 +1,81 @@
-// Exemplo de listas (Você deve colocar o link DIRETO do arquivo .mp4 aqui)
-const playlists = {
-    video: [
-        "https://raw.githubusercontent.com/Pecorine125/VideosOff/main/video%20Especial/video1.mp4",
-        "https://raw.githubusercontent.com/Pecorine125/VideosOff/main/video%20Especial/video2.mp4"
-    ],
-    anime: [
-        "https://raw.githubusercontent.com/Pecorine125/VideosOff/main/Anime%20Especial/anime1.mp4",
-        "https://raw.githubusercontent.com/Pecorine125/VideosOff/main/Anime%20Especial/anime2.mp4"
-    ]
-};
+// Base da URL do repositório
+const BASE_URL = "https://raw.githubusercontent.com/Pecorine125/VideosOff/main/video%20Especial/";
 
-let currentPlaylist = [];
-let currentIndex = 0;
+let currentNumber = 1;
+
+// Elementos HTML
 const videoElement = document.getElementById('main-video');
+const titleElement = document.getElementById('video-title');
 
-function openPlayer(type) {
-    currentPlaylist = playlists[type];
-    currentIndex = 0;
-    
-    document.getElementById('menu-screen').classList.add('hidden');
-    document.getElementById('player-screen').classList.remove('hidden');
-    document.getElementById('video-title').innerText = type.toUpperCase();
-    
-    loadVideo();
+const btnBack = document.getElementById('btn-back');
+const btnPause = document.getElementById('btn-pause');
+const btnPlay = document.getElementById('btn-play');
+const btnNext = document.getElementById('btn-next');
+const btnClose = document.getElementById('btn-close');
+
+// Função para gerar o link do vídeo de acordo com o número
+function getVideoUrl(number) {
+    const fileName = encodeURIComponent(`Vídeo Especial ${number}.mp4`);
+    return `${BASE_URL}${fileName}`;
 }
 
-function loadVideo() {
-    videoElement.src = currentPlaylist[currentIndex];
+// Carrega o vídeo sem dar Play automático
+function loadVideo(number, autoPlay = false) {
+    currentNumber = number;
+    const fileName = `Vídeo Especial ${currentNumber}.mp4`;
+    
+    titleElement.innerText = fileName;
+    videoElement.src = getVideoUrl(currentNumber);
+    
+    if (autoPlay) {
+        videoElement.play().catch(err => console.warn("Erro ao reproduzir:", err));
+    }
+}
+
+// Lógica de avanço/recuo de número
+function changeNumber(direction) {
+    let nextNumber = currentNumber + direction;
+
+    if (nextNumber < 1) {
+        nextNumber = 1; // Não permite ir abaixo de 1
+    }
+
+    loadVideo(nextNumber, true);
+}
+
+// Tratamento caso o vídeo do GitHub não exista (fim da lista)
+videoElement.addEventListener('error', () => {
+    alert(`O vídeo "Vídeo Especial ${currentNumber}.mp4" não foi encontrado. Voltando ao vídeo 1.`);
+    loadVideo(1, false);
+});
+
+// Ações dos Botões
+
+// Play: inicia o vídeo
+btnPlay.addEventListener('click', () => {
     videoElement.play();
-}
+});
 
-function playVideo() { videoElement.play(); }
-function pauseVideo() { videoElement.pause(); }
+// Pause: se estiver pausado, continua. Se estiver rodando, pausa.
+btnPause.addEventListener('click', () => {
+    if (videoElement.paused) {
+        videoElement.play();
+    } else {
+        videoElement.pause();
+    }
+});
 
-function changeVideo(direction) {
-    currentIndex += direction;
-    
-    // Evita sair do limite da lista
-    if (currentIndex < 0) currentIndex = currentPlaylist.length - 1;
-    if (currentIndex >= currentPlaylist.length) currentIndex = 0;
-    
-    loadVideo();
-}
+btnBack.addEventListener('click', () => changeNumber(-1));
+btnNext.addEventListener('click', () => changeNumber(1));
 
-function backToMenu() {
-    videoElement.pause();
-    document.getElementById('player-screen').classList.add('hidden');
-    document.getElementById('menu-screen').classList.remove('hidden');
-}
+btnClose.addEventListener('click', () => {
+    window.close();
+    setTimeout(() => {
+        alert("Seu navegador bloqueou o fechamento automático. Por favor, feche a aba manualmente.");
+    }, 300);
+});
+
+// Inicialização: carrega o "Vídeo Especial 1.mp4" mas não toca automaticamente
+document.addEventListener('DOMContentLoaded', () => {
+    loadVideo(1, false);
+});

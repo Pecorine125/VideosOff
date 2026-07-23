@@ -1,12 +1,17 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #1a1a1a;
-    color: white;
+    color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    min-height: 100vh;
 }
 
 .container {
@@ -14,29 +19,30 @@ body {
     background: #2a2a2a;
     padding: 2rem;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    width: 80%;
-    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 650px;
 }
 
-.hidden { display: none; }
-
-.menu-buttons button {
-    padding: 15px 25px;
-    margin: 10px;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #e91e63;
-    color: white;
-    transition: 0.3s;
+h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    color: #e91e63;
 }
 
-.menu-buttons button:hover { background-color: #c2185b; }
+.video-container {
+    background-color: #000000;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+video {
+    display: block;
+    max-height: 70vh;
+}
 
 .controls {
-    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -44,14 +50,31 @@ body {
 }
 
 .controls button {
-    padding: 10px 15px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
     border: none;
-    background: #444;
-    color: white;
+    background-color: #444444;
+    color: #ffffff;
+    transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-.controls button:hover { background: #666; }
+.controls button:hover {
+    background-color: #666666;
+}
 
-.btn-menu { background: #555 !important; width: 100%; margin-top: 10px; }
+.controls button:active {
+    transform: scale(0.98);
+}
+
+.btn-close {
+    background-color: #e91e63 !important;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.btn-close:hover {
+    background-color: #c2185b !important;
+}

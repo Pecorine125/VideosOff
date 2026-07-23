@@ -8,31 +8,23 @@
 </head>
 <body>
 
-    <div id="menu-screen" class="container">
-        <h1>Selecione uma Categoria</h1>
-        <div class="menu-buttons">
-            <button onclick="openPlayer('video')">Video Especial</button>
-            <button onclick="openPlayer('anime')">Anime Especial</button>
-        </div>
-    </div>
-
-    <div id="player-screen" class="container hidden">
-        <h2 id="video-title">Reproduzindo</h2>
+    <main class="container">
+        <h2 id="video-title">Vídeo Especial 1.mp4</h2>
         
         <div class="video-container">
-            <video id="main-video" width="100%">
-                Seu navegador não suporta vídeos.
+            <video id="main-video" controls width="100%" preload="metadata">
+                Seu navegador não suporta reprodução de vídeos.
             </video>
         </div>
 
         <div class="controls">
-            <button onclick="changeVideo(-1)">Back</button>
-            <button onclick="pauseVideo()">Pause</button>
-            <button onclick="playVideo()">Play</button>
-            <button onclick="changeVideo(1)">Next</button>
-            <button onclick="backToMenu()" class="btn-menu">Back Menu</button>
+            <button id="btn-back">Back</button>
+            <button id="btn-pause">Pause</button>
+            <button id="btn-play">Play</button>
+            <button id="btn-next">Next</button>
+            <button id="btn-close" class="btn-close">Close</button>
         </div>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
