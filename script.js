@@ -22,7 +22,7 @@ function getVideoUrl(number) {
 // Carrega o vídeo sem dar Play automático
 function loadVideo(number, autoPlay = false) {
     currentNumber = number;
-    const fileName = `Vídeo Especial ${currentNumber}.mp4`;
+    const fileName = `Video Especial ${currentNumber}.mp4`;
     
     titleElement.innerText = fileName;
     videoElement.src = getVideoUrl(currentNumber);
