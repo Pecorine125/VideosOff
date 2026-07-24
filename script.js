@@ -1,5 +1,5 @@
 // Base da URL do repositório
-const BASE_URL = "https://raw.githubusercontent.com/Pecorine125/VideosOff/main/video%20Especial/";
+const BASE_URL = "https://raw.githubusercontent.com/Pecorine125/VideosOff/main/video Especial/";
 
 let currentNumber = 1;
 
