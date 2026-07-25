@@ -1,5 +1,5 @@
-// Base da URL do repositório
-const BASE_URL = "https://raw.githubusercontent.com/Pecorine125/VideosOff/main/video Especial/";
+// Base da URL do repositório (mantendo os caminhos exatos do GitHub)
+const BASE_URL = "https://raw.githubusercontent.com/Pecorine125/VideosOff/main/video%20Especial/";
 
 let currentNumber = 1;
 
@@ -13,57 +13,49 @@ const btnPlay = document.getElementById('btn-play');
 const btnNext = document.getElementById('btn-next');
 const btnClose = document.getElementById('btn-close');
 
-// Função para gerar o link do vídeo de acordo com o número
+// Gera a URL formatando o nome exato do arquivo no GitHub
 function getVideoUrl(number) {
-    const fileName = encodeURIComponent(`Vídeo Especial ${number}.mp4`);
-    return `${BASE_URL}${fileName}`;
+    // CERTIFIQUE-SE: Se no GitHub estiver sem acento (Video), ajuste o texto abaixo
+    const fileName = `Video Especial ${number}.mp4`; 
+    return `${BASE_URL}${encodeURIComponent(fileName)}`;
 }
 
-// Carrega o vídeo sem dar Play automático
+// Carrega o vídeo na tela
 function loadVideo(number, autoPlay = false) {
     currentNumber = number;
     const fileName = `Video Especial ${currentNumber}.mp4`;
     
-    titleElement.innerText = fileName;
+    if (titleElement) titleElement.innerText = fileName;
     videoElement.src = getVideoUrl(currentNumber);
     
     if (autoPlay) {
-        videoElement.play().catch(err => console.warn("Erro ao reproduzir:", err));
+        videoElement.play().catch(err => console.warn("Autoplay bloqueado pelo navegador:", err));
     }
 }
 
-// Lógica de avanço/recuo de número
+// Alterna entre o vídeo anterior e o próximo
 function changeNumber(direction) {
     let nextNumber = currentNumber + direction;
 
     if (nextNumber < 1) {
-        nextNumber = 1; // Não permite ir abaixo de 1
+        nextNumber = 1; // Não avança para números menores que 1
     }
 
     loadVideo(nextNumber, true);
 }
 
-// Tratamento caso o vídeo do GitHub não exista (fim da lista)
+// Tratamento caso o vídeo do GitHub não exista (Fim da lista ou link quebrado)
 videoElement.addEventListener('error', () => {
-    alert(`O vídeo "Vídeo Especial ${currentNumber}.mp4" não foi encontrado. Voltando ao vídeo 1.`);
-    loadVideo(1, false);
+    // Evita um loop infinito se o vídeo 1 também falhar
+    if (currentNumber !== 1) {
+        alert(`O vídeo "Video Especial ${currentNumber}.mp4" não foi encontrado. Voltando ao vídeo 1.`);
+        loadVideo(1, false);
+    }
 });
 
 // Ações dos Botões
-
-// Play: inicia o vídeo
-btnPlay.addEventListener('click', () => {
-    videoElement.play();
-});
-
-// Pause: se estiver pausado, continua. Se estiver rodando, pausa.
-btnPause.addEventListener('click', () => {
-    if (videoElement.paused) {
-        videoElement.play();
-    } else {
-        videoElement.pause();
-    }
-});
+btnPlay.addEventListener('click', () => videoElement.play());
+btnPause.addEventListener('click', () => videoElement.pause()); // Apenas pausa
 
 btnBack.addEventListener('click', () => changeNumber(-1));
 btnNext.addEventListener('click', () => changeNumber(1));
@@ -75,7 +67,7 @@ btnClose.addEventListener('click', () => {
     }, 300);
 });
 
-// Inicialização: carrega o "Vídeo Especial 1.mp4" mas não toca automaticamente
+// Inicialização ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     loadVideo(1, false);
 });
